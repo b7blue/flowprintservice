@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--favicon-->
+	<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png">
+	<!--plugins-->
+	<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet">
+	<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+	<link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet">
+	<!-- loader-->
+	<link href="assets/css/pace.min.css" rel="stylesheet">
+	<script src="assets/js/pace.min.js"></script>
+	<!-- Bootstrap CSS -->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
+	<link href="assets/css/app.css" rel="stylesheet">
+	<link href="assets/css/icons.css" rel="stylesheet">
+	<!-- Theme Style CSS -->
+	<link rel="stylesheet" href="assets/css/dark-theme.css">
+	<link rel="stylesheet" href="assets/css/semi-dark.css">
+	<link rel="stylesheet" href="assets/css/header-colors.css">
+	<script src="static/js/login.js"></script>
+	<title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+</head>
+
+<body class="      pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+  <div class="pace-progress-inner"></div>
+</div>
+<div class="pace-activity"></div></div><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+  <div class="pace-progress-inner"></div>
+</div>
+<div class="pace-activity"></div></div><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+	<div class="pace-progress-inner"></div>
+  </div>
+  <div class="pace-activity"></div></div>
+	  <!--wrapper-->
+	  <div class="wrapper">
+		  <!--sidebar wrapper -->
+		  <div class="sidebar-wrapper" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden;"><div class="simplebar-content mm-active" style="padding: 0px;">
+			<div class="sidebar-header">
+									
+				<div>
+					<h4 class="logo-text">🐬 MyFlowPrint</h4>
+				</div>
+				
+			</div>
+			  <!--navigation-->
+			  <ul class="metismenu mm-show" id="menu">
+				  <li class="mm-active">
+					  <a href="/login" target="_blank" aria-expanded="true">
+						  <div class="parent-icon"><i class="bx bx-lock-open"></i>
+						  </div>
+						  <div class="menu-title">登录</div>
+					  </a>
+				  </li>
+				  <li>
+					  <a href="/signup" target="_blank" aria-expanded="false">
+						  <div class="parent-icon"><i class="bx bx-key"></i>
+						  </div>
+						  <div class="menu-title">注册</div>
+					  </a>
+				  </li>
+				  <li>
+					  <a href="/sessdisplay" target="_blank" aria-expanded="false">
+						  <div class="parent-icon"><i class="bx bx-comment-detail"></i>
+						  </div>
+						  <div class="menu-title">会话记录</div>
+					  </a>
+				  </li>
+				  <li>
+					  <a href="/manageprints" target="_blank" aria-expanded="false">
+						  <div class="parent-icon"><i class="bx bx-dna"></i>
+						  </div>
+						  <div class="menu-title">指纹管理</div>
+					  </a>
+				  </li>
+				  
+			  </ul>
+		  </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 281px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none;"></div></div></div>
+		  <!--end sidebar wrapper -->
+		  
+		  <!--start page wrapper -->
+		  <div class="page-wrapper">
+			  <div class="page-content">
+				  <!--breadcrumb-->
+				  
+				  <!--end breadcrumb-->
+				  <div class="row">
+					  <div class="col-xl-7 mx-auto">
+						  
+						  
+						  <div class="card border-top border-0 border-4 border-dark">
+							  <div class="card-body p-5">
+								  <div class="card-title text-center"><i class="bx bxs-user-circle text-dark font-50"></i>
+									  <h5 class="mb-5 mt-2 text-dark">登录</h5>
+								  </div>
+								  <hr>
+								  <form class="row g-3" id="loginform">
+									{{.xsrfdata}} 
+									  <div class="col-12">
+										  <label for="inputLastEnterUsername" class="form-label">输入用户名</label>
+										  <div class="input-group input-group-lg"> <span class="input-group-text bg-transparent"><i class="bx bxs-user"></i></span>
+											  <input type="text" class="form-control border-start-0" id="inputLastEnterUsername" name="uid">
+										  </div>
+									  </div>
+									  <div class="col-12">
+										  <label for="inputLastEnterPassword" class="form-label">输入密码</label>
+										  <div class="input-group input-group-lg"> <span class="input-group-text bg-transparent"><i class="bx bxs-lock"></i></span>
+											  <input type="text" class="form-control border-start-0" id="inputLastEnterPassword" name="pw">
+										  </div>
+									  </div>
+									  <!-- 登录失败 -->
+										<div id="warningcard" class="alert alert-danger border-0 bg-danger alert-dismissible fade show py-2" style="display: none;">
+											<div class="d-flex align-items-center">
+												<div class="font-35 text-white"><i class="bx bxs-message-square-x"></i>
+												</div>
+												<div class="ms-3">
+													<h6 class="mb-0 text-white">登录出错</h6>
+													<div class="text-white" id="warningcontent"></div>
+												</div>
+											</div>
+											<!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+										</div>
+
+										<!-- 登录成功 -->
+										<div id="okcard" class="alert alert-success border-0 bg-success alert-dismissible fade show py-2" style="display: none;">
+											<div class="d-flex align-items-center">
+												<div class="font-35 text-white"><i class="bx bxs-check-circle"></i>
+												</div>
+												<div class="ms-3">
+													<h6 class="mb-0 text-white">登录成功</h6>
+													<div class="text-white" id="okcontent"></div>
+												</div>
+											</div>
+											<!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+										</div>
+									  <div class="col-12">
+										  <div class="d-grid">
+											<!-- 异步登录，成功跳转/sessdisplay，失败可视化 -->
+											  <button type="button" onclick="login(loginform)" class="btn btn-dark btn-lg px-5"><i class="bx bxs-lock-open"></i>登录</button>
+										  </div>
+									  </div>
+									  <hr>
+									  
+									  
+								  </form>
+							  </div>
+						  </div>
+						  
+					  </div>
+				  </div>
+				  <!--end row-->
+				  
+				  <!--end row-->
+			  </div>
+		  </div>
+		  <!--end page wrapper -->
+		  <!--start overlay-->
+		  <div class="overlay toggle-icon"></div>
+		  <!--end overlay-->
+		  <!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top" style="display: none;"><i class="bx bxs-up-arrow-alt"></i></a>
+		  <!--End Back To Top Button-->
+		  <footer class="page-footer">
+			  <p class="mb-0">Copyright © 2021. All right reserved.</p>
+		  </footer>
+	  </div>
+	  <!--end wrapper-->
+	  
+	  <!-- Bootstrap JS -->
+	  <script src="assets/js/bootstrap.bundle.min.js"></script>
+	  <!--plugins-->
+	  <script src="assets/js/jquery.min.js"></script>
+	  <script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
+	  <script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
+	  <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+	  <!--app JS-->
+	  <script src="assets/js/app.js"></script>
+  
+  
+  
+
+</body></html>
