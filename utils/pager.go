@@ -1,7 +1,9 @@
 package utils
 
 import (
+	"fmt"
 	"myflowprint/model"
+	"regexp"
 )
 
 /* 	（1）当前数据一共有多少条。
@@ -32,73 +34,49 @@ const maxlen int64 = 20
 const urlnum int = 5
 
 type Pager struct {
-	tablename string
-	page      int
-	datanums  int64
-	pagenums  int64
-
-	Data interface{}
-	Pre  []int
-	Next []int
+	Router    string
+	URL       string
+	Content   interface{}
+	Firstpage bool
+	Lastpage  bool
+	PreURL    string
+	NextURL   string
 }
 
-// 根据传回的pager是否为nil判断page合法与否
-func NewPager(tablename string, page int) *Pager {
-	datanums := model.Count(tablename)
-	pagenums := (datanums + maxlen - 1) / maxlen
+func (pager *Pager) get_round_page() {
 
-	// 判断传入的page是否合法
-	if page == 0 {
-		// 说明要查的是第一页
-		page = 1
-	} else if page < 0 || int64(page) > pagenums {
-		return nil
+	originurl := regexp.MustCompile(fmt.Sprintf(`^.*\?page=(\d+)$`, pager.Router))
+	if !pager.Firstpage {
+		if originurl.MatchString(pager.URL) {
+			originurl.ReplaceAllString(pager.URL)
+		}
+
 	}
-
-	return &Pager{
-		tablename: tablename,
-		page:      page,
-		datanums:  datanums,
-		pagenums:  pagenums,
+	if !islastpage {
+		if baseurl.MatchString(c.Ctx.Request.RequestURI) {
+			c.Data["nexturl"] = c.Ctx.Request.URL.Path + fmt.Sprintf("?page=%d", page+1)
+		} else {
+			c.Data["nexturl"] = c.Ctx.Request.RequestURI + fmt.Sprintf("&page=%d", page+1)
+		}
 	}
 }
 
-func (pager *Pager) Page() {
-	pager.getpre()
-	pager.getnext()
-}
+const limitlen int = 30
 
-func (pager *Pager) getpre() {
-	var l int
-	if pager.page > urlnum {
-		l = urlnum
-
-	} else {
-		l = pager.page - 1
+func Get_sess_page(detectid int, ip uint32, appname string, page int) (result []model.WebInfo, isfirstpage, islastpage bool) {
+	if page <= 0 {
+		return nil, true, true
 	}
-	pre := make([]int, l)
-	for i := 1; i <= l; i++ {
-		pre[l-i] = pager.page - i
+	datalen := model.Count_sess_by_term(detectid, ip, appname)
+	if (page-1)*limitlen > datalen {
+		return nil, true, true
 	}
-	pager.Pre = pre
-}
-
-func (pager *Pager) getnext() {
-	var l int
-	if int(pager.pagenums)-pager.page > urlnum {
-		l = urlnum
-
-	} else {
-		l = int(pager.pagenums) - pager.page
+	result = model.Find_sess_by_term_page(detectid, ip, appname, page)
+	if page*limitlen > datalen {
+		islastpage = true
 	}
-	next := make([]int, l)
-	for i := 1; i <= l; i++ {
-		next[i-1] = pager.page + 1
+	if page == 1 {
+		isfirstpage = true
 	}
-	pager.Next = next
-}
-
-func (pager *Pager) getdata() {
-	// 计算要查询的数据库范围
-	
+	return
 }

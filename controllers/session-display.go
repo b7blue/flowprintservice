@@ -42,28 +42,10 @@ func (c *SessDisplayController) Get() {
 				if utils.IsDetecting(detectid) {
 					c.Data["isDetecting"] = true
 				}
+				page, _ := c.GetInt("page", 1)
+				ip, appname := utils.IP2uint32(c.GetString("ip")), c.GetString("appname")
+				result, isfirstpage, islastpage := utils.Get_sess_page(detectid, ip, appname, page)
 
-				ip, appname := c.GetString("ip"), c.GetString("appname")
-				allSessRaw := model.GetAllSess(fmt.Sprintf("detectsess_%d", detectid))
-				allSess := make([]sess, len(allSessRaw))
-				num := 0
-				for _, s := range allSessRaw {
-					if ip == "" || (ip != "" && ip == utils.FormatIP(s.Bip)) {
-						if appname == "" || (appname != "" && appname == s.Appname) {
-							allSess[num] = sess{
-								ID:      s.ID,
-								Appname: s.Appname,
-								Ip:      utils.FormatIP(s.Bip),
-								Port:    s.Bport,
-								Packet:  s.Upacket + s.Dpacket,
-								Flow:    s.Uflow + s.Dflow,
-								Start:   s.Start.Format("15:04:05.000"),
-								End:     s.End.Format("15:04:05.000"),
-							}
-							num++
-						}
-					}
-				}
 				allSess = allSess[:num]
 				c.Data["allSess"] = allSess
 			}
